@@ -22,36 +22,12 @@ public class OrderClient {
 		
 		
 		try{
-			/*
-			List<Order> orders = (List<Order>) getResponse(allOrdersAsBytecodes);
-			System.out.println("------------ All Orders ----------------");
-			for(Order o: orders){
-				System.out.println(o.getOrderNumber() + " Date: " + o.getOrderDate() + " Line items: " + o.itemCount());
-			}
-			
-			
-			System.out.println("------------ Order AAA-123 ----------------");
-			Order order = (Order) getResponse(getOrderAsBytecodes);
-			System.out.println(order.getOrderNumber() + " Date: " + order.getOrderDate() + " Line items: " + order.itemCount());
-			Item[] items = order.items();
-			for (int i = 0; i < items.length; i++) {
-				Item item = items[i];
-				System.out.println("\tPart Number: " + item.getPartNumber());
-				System.out.println("\tName: " + item.getPartName());
-				System.out.println("\tQty: " + item.getQuantity());
-				System.out.println("\tPrice: " + item.getPrice());
-			}
-			
-			*/
 			System.out.println("------------ All Orders in XML Format ----------------");
 			Unmarshaller um = jc.createUnmarshaller();
 			StringReader sr = new StringReader((String) getResponse(allOrdersAsXML));
 			po = (PurchaseOrder) JAXBIntrospector.getValue(um.unmarshal(sr));
 			System.out.println(po);
-			
-			
-			System.out.println("------------ Order AAA-123 in XML Format ----------------");
-			System.out.println(getResponse(getOrderAsXML));
+
 			
 		}catch(Exception e){
     		e.printStackTrace();
